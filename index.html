@@ -166,6 +166,47 @@
       margin-top: 20px;
     }
 
+    .answer-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 22px auto 0;
+      max-width: 310px;
+    }
+
+    .answer-btn {
+      width: 100%;
+      padding: 14px 18px;
+      border-radius: 26px;
+      font-size: 14px;
+      font-weight: bold;
+      transition: .2s;
+    }
+
+    .answer-btn.primary {
+      background: #e98bab;
+      color: white;
+      box-shadow: 0 6px 16px #df91ac55;
+    }
+
+    .answer-btn.secondary {
+      background: white;
+      color: #d66f96;
+      border: 1px solid #f3c3d3;
+    }
+
+    .answer-btn:disabled {
+      opacity: .6;
+      cursor: not-allowed;
+    }
+
+    #answerStatus {
+      min-height: 48px;
+      margin-top: 18px;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
     .floating-heart {
       position: fixed;
       bottom: -30px;
@@ -379,6 +420,10 @@
         Take care, okay? 🌷
       </p>
 
+      <button class="main-btn" onclick="nextScene(8)">
+        Ada satu pertanyaan kecil... 🥺
+      </button>
+
       <button class="secondary-btn" onclick="nextScene(1)">
         Ulangi dari awal 💕
       </button>
@@ -386,6 +431,38 @@
       <p class="small-note">
         Made with a little love and a lot of effort.
       </p>
+    </section>
+
+    <!-- SCENE 8: FORGIVENESS QUESTION -->
+    <section class="scene hidden" id="scene8">
+      <div class="character">🐻💗</div>
+
+      <h1>Boleh tanya sesuatu? 🥺</h1>
+
+      <p class="description">
+        Maukah kamu memaafkanku?
+        <br><br>
+        Kamu boleh menjawab dengan jujur, ya.
+        Tidak perlu merasa terburu-buru.
+      </p>
+
+      <div class="answer-buttons">
+        <button class="answer-btn primary" id="forgiveBtn"
+          onclick="sendAnswer('Iya, aku maafkan ❤️')">
+          Iya, aku maafkan ❤️
+        </button>
+
+        <button class="answer-btn secondary" id="timeBtn"
+          onclick="sendAnswer('Aku masih butuh waktu 🥺')">
+          Aku masih butuh waktu 🥺
+        </button>
+      </div>
+
+      <p class="small-note">
+        Jawabanmu akan dikirim ke email pembuat website ini.
+      </p>
+
+      <p id="answerStatus" role="status" aria-live="polite"></p>
     </section>
 
   </main>
@@ -493,6 +570,50 @@ Maaf ya, sayanggg. Ini ada sedikit hadiah kecil buat kamu. 🐻🌷❤️`;
 
           setTimeout(() => piece.remove(), 4500);
         }, i * 40);
+      }
+    }
+
+
+    // Kirim jawaban ke email melalui Formspree
+    let answerSubmitted = false;
+
+    async function sendAnswer(answer) {
+      if (answerSubmitted) return;
+
+      const forgiveBtn = document.getElementById("forgiveBtn");
+      const timeBtn = document.getElementById("timeBtn");
+      const status = document.getElementById("answerStatus");
+
+      forgiveBtn.disabled = true;
+      timeBtn.disabled = true;
+      status.textContent = "Mengirim jawaban... 💌";
+
+      const formData = new FormData();
+      formData.append("answer", answer);
+      formData.append("_subject", "Jawaban dari website To Agnes");
+      formData.append("website", "To Agnes");
+
+      try {
+        const response = await fetch("https://formspree.io/f/mzeeqvqv", {
+          method: "POST",
+          body: formData,
+          headers: {
+            "Accept": "application/json"
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error("Pengiriman belum berhasil.");
+        }
+
+        answerSubmitted = true;
+        status.textContent =
+          "Terima kasih sudah menjawab dengan jujur. Jawabanmu sudah terkirim. 💗";
+      } catch (error) {
+        status.textContent =
+          "Maaf, jawaban belum berhasil dikirim. Periksa koneksi internet lalu coba lagi, ya.";
+        forgiveBtn.disabled = false;
+        timeBtn.disabled = false;
       }
     }
 
