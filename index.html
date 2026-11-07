@@ -1,0 +1,524 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#fff0f5">
+  <title>A Little Gift For You 💗</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      background: linear-gradient(145deg, #fff5f8, #ffe3ed, #fff0f5);
+      font-family: "Trebuchet MS", sans-serif;
+      color: #80566a;
+      overflow-x: hidden;
+    }
+
+    button {
+      font-family: inherit;
+      cursor: pointer;
+      border: none;
+    }
+
+    .container {
+      min-height: 100svh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 25px 18px;
+    }
+
+    .scene {
+      width: 100%;
+      max-width: 410px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      animation: fadeIn .7s ease;
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    .character {
+      font-size: 100px;
+      margin-bottom: 18px;
+      display: inline-block;
+      animation: bounce 2s infinite;
+    }
+
+    h1 {
+      color: #d66f96;
+      font-size: 29px;
+      margin-bottom: 15px;
+    }
+
+    .description {
+      font-size: 15px;
+      line-height: 1.9;
+      margin: 0 auto 25px;
+      max-width: 340px;
+    }
+
+    .main-btn {
+      background: #e98bab;
+      color: white;
+      padding: 14px 27px;
+      border-radius: 30px;
+      font-size: 15px;
+      font-weight: bold;
+      box-shadow: 0 6px 16px #df91ac55;
+      transition: .25s;
+    }
+
+    .main-btn:active {
+      transform: scale(.93);
+    }
+
+    .secondary-btn {
+      background: white;
+      color: #d66f96;
+      padding: 12px 22px;
+      border: 1px solid #f3c3d3;
+      border-radius: 25px;
+      margin-top: 12px;
+      font-size: 14px;
+    }
+
+    .envelope {
+      font-size: 110px;
+      margin: 20px 0;
+      display: inline-block;
+      cursor: pointer;
+      animation: bounce 1.5s infinite;
+      transition: .3s;
+    }
+
+    .envelope:active {
+      transform: scale(1.2) rotate(-8deg);
+    }
+
+    .hint {
+      font-size: 12px;
+      color: #bb8298;
+    }
+
+    .letter {
+      background: #fffdf8;
+      padding: 27px 23px;
+      border-radius: 22px;
+      box-shadow: 0 10px 30px #bd829333;
+      border: 2px solid #ffe0eb;
+      text-align: left;
+    }
+
+    .letter h2 {
+      text-align: center;
+      color: #d66f96;
+      font-size: 23px;
+      margin-bottom: 20px;
+    }
+
+    #letterText {
+      white-space: pre-line;
+      font-size: 14px;
+      line-height: 2;
+      min-height: 210px;
+    }
+
+    .signature {
+      color: #d66f96;
+      text-align: right;
+      font-weight: bold;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+
+    .gift {
+      font-size: 85px;
+      margin: 20px 0;
+      cursor: pointer;
+      display: inline-block;
+      transition: .3s;
+    }
+
+    .gift:active {
+      transform: scale(1.2) rotate(10deg);
+    }
+
+    .hug {
+      font-size: 115px;
+      animation: hug 1s infinite alternate;
+    }
+
+    .small-note {
+      font-size: 12px;
+      color: #b98b9c;
+      margin-top: 20px;
+    }
+
+    .floating-heart {
+      position: fixed;
+      bottom: -30px;
+      z-index: 1;
+      pointer-events: none;
+      animation: floatUp 6s linear forwards;
+    }
+
+    .confetti {
+      position: fixed;
+      top: -20px;
+      z-index: 10;
+      pointer-events: none;
+      animation: confettiFall 3s linear forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(22px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-12px); }
+    }
+
+    @keyframes floatUp {
+      to {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes hug {
+      from { transform: scale(1); }
+      to { transform: scale(1.12); }
+    }
+
+    @media (max-width: 380px) {
+      h1 { font-size: 25px; }
+      .character { font-size: 85px; }
+      .letter { padding: 22px 17px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <main class="container">
+
+    <!-- SCENE 1: WELCOME -->
+    <section class="scene" id="scene1">
+      <div class="character">🐻💗</div>
+
+      <h1>Hiii, kamu! 🌷</h1>
+
+      <p class="description">
+        Ada seseorang yang sedang menyiapkan
+        sesuatu yang kecil untukmu.
+        <br><br>
+        Boleh aku mencuri sedikit waktumu? 🥺
+      </p>
+
+      <button class="main-btn" onclick="nextScene(2)">
+        Bolehhh 💗
+      </button>
+
+      <p class="small-note">
+        Psst... ada kejutan kecil di dalamnya.
+      </p>
+    </section>
+
+
+    <!-- SCENE 2: BEAR DELIVERY -->
+    <section class="scene hidden" id="scene2">
+      <div class="character">🐻</div>
+
+      <h1>Special Delivery! 📦</h1>
+
+      <p class="description">
+        Halo! Aku beruang pengantar surat.
+        <br>
+        Aku datang membawa sesuatu
+        dari seseorang yang ingin membuatmu tersenyum.
+      </p>
+
+      <button class="main-btn" onclick="nextScene(3)">
+        Wah, apa itu? 👀
+      </button>
+    </section>
+
+
+    <!-- SCENE 3: ENVELOPE -->
+    <section class="scene hidden" id="scene3">
+      <div class="character">🐻💌</div>
+
+      <h1>Surat khusus untukmu!</h1>
+
+      <p class="description">
+        Katanya ada sedikit pesan
+        yang ingin disampaikan kepadamu.
+      </p>
+
+      <div class="envelope" onclick="openLetter()">
+        💌
+      </div>
+
+      <p class="hint">
+        Sentuh amplopnya untuk membuka surat.
+      </p>
+    </section>
+
+
+    <!-- SCENE 4: APOLOGY LETTER -->
+    <section class="scene hidden" id="scene4">
+
+      <div class="letter">
+        <h2>A Little Apology 💗</h2>
+
+        <div id="letterText"></div>
+
+        <p class="signature" id="signature"></p>
+      </div>
+
+      <br>
+
+      <button class="main-btn" id="continueBtn"
+        onclick="nextScene(5)" disabled>
+        Ada kejutan lagi! 🎁
+      </button>
+    </section>
+
+
+    <!-- SCENE 5: LITTLE GIFT -->
+    <section class="scene hidden" id="scene5">
+      <div class="character">🐻🌷</div>
+
+      <h1>Wait... One More Thing!</h1>
+
+      <p class="description">
+        Beruang kecil ini ternyata masih
+        menyimpan hadiah untukmu.
+        <br><br>
+        Coba buka hadiahnya! 🎀
+      </p>
+
+      <div class="gift" onclick="openGift()">
+        🎁
+      </div>
+
+      <p class="hint">Sentuh hadiahnya ya!</p>
+    </section>
+
+
+    <!-- SCENE 6: SURPRISE -->
+    <section class="scene hidden" id="scene6">
+      <div class="character">🌸✨</div>
+
+      <h1>Yayyy! 💗</h1>
+
+      <p class="description">
+        Hadiah kecil dariku adalah...
+        <br><br>
+        Sebuah doa agar harimu lebih ringan,
+        hatimu lebih tenang, dan senyummu
+        tidak mudah hilang.
+        <br><br>
+        Jangan lupa bahagia, ya!
+      </p>
+
+      <button class="main-btn" onclick="nextScene(7)">
+        Mau peluk virtual! 🥺
+      </button>
+    </section>
+
+
+    <!-- SCENE 7: VIRTUAL HUG -->
+    <section class="scene hidden" id="scene7">
+      <div class="hug">🧸💗</div>
+
+      <h1>Virtual Huggg!</h1>
+
+      <p class="description">
+        Peluk jauhhh untukmu! 🫂
+        <br><br>
+        Terima kasih sudah meluangkan
+        sedikit waktu untuk membuka
+        hadiah kecil ini.
+        <br><br>
+        Take care, okay? 🌷
+      </p>
+
+      <button class="secondary-btn" onclick="nextScene(1)">
+        Ulangi dari awal 💕
+      </button>
+
+      <p class="small-note">
+        Made with a little love and a lot of effort.
+      </p>
+    </section>
+
+  </main>
+
+
+  <script>
+    // Navigasi antar halaman
+    function nextScene(number) {
+      document.querySelectorAll(".scene").forEach(scene => {
+        scene.classList.add("hidden");
+      });
+
+      const selected = document.getElementById("scene" + number);
+
+      selected.classList.remove("hidden");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+      });
+
+      if (number === 6) {
+        celebrate();
+      }
+    }
+
+
+    // Buka surat
+    function openLetter() {
+      nextScene(4);
+      typeLetter();
+    }
+
+
+    // Isi surat
+    const message = `Hai, sayanggg... 🥺💗
+
+Maaf ya untuk sikapku tadi. Aku sadar aku terlalu cepat kesal dan menanggapi candaanmu dengan serius.
+
+Seharusnya aku bisa lebih santai, memahami maksudmu, dan nggak membuat suasana jadi kurang menyenangkan.
+
+Aku juga nggak ingin kamu merasa harus selalu berhati-hati saat bercanda denganku.
+
+Aku masih belajar untuk lebih sabar dan memahami kamu.
+
+Sekarang jangan lupa istirahat, nikmati drakornya, dan jangan lupa tersenyum, ya!
+
+Maaf ya, sayanggg. Ini ada sedikit hadiah kecil buat kamu. 🐻🌷❤️`;
+
+    // Efek mengetik surat
+    let typingStarted = false;
+
+    function typeLetter() {
+      if (typingStarted) return;
+
+      typingStarted = true;
+
+      const textElement = document.getElementById("letterText");
+      const signature = document.getElementById("signature");
+      const continueBtn = document.getElementById("continueBtn");
+
+      let index = 0;
+
+      function type() {
+        if (index < message.length) {
+          textElement.textContent += message.charAt(index);
+          index++;
+
+          const delay = message.charAt(index - 1) === "\n" ? 250 : 28;
+
+          setTimeout(type, delay);
+        } else {
+          signature.textContent = "From someone who cares about you ❤️";
+          continueBtn.disabled = false;
+        }
+      }
+
+      type();
+    }
+
+
+    // Buka hadiah
+    function openGift() {
+      nextScene(6);
+    }
+
+
+    // Confetti kejutan
+    function celebrate() {
+      const symbols = ["💗", "💕", "✨", "🌸", "🎉", "💖"];
+
+      for (let i = 0; i < 45; i++) {
+        setTimeout(() => {
+          const piece = document.createElement("div");
+
+          piece.className = "confetti";
+          piece.textContent =
+            symbols[Math.floor(Math.random() * symbols.length)];
+
+          piece.style.left = Math.random() * 100 + "vw";
+          piece.style.fontSize = (14 + Math.random() * 18) + "px";
+          piece.style.animationDuration = (2 + Math.random() * 2) + "s";
+
+          document.body.appendChild(piece);
+
+          setTimeout(() => piece.remove(), 4500);
+        }, i * 40);
+      }
+    }
+
+
+    // Hati melayang
+    function createHeart() {
+      const heart = document.createElement("div");
+
+      heart.className = "floating-heart";
+
+      const symbols = ["💗", "💕", "♡", "✨"];
+
+      heart.textContent =
+        symbols[Math.floor(Math.random() * symbols.length)];
+
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (15 + Math.random() * 18) + "px";
+      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
+
+      document.body.appendChild(heart);
+
+      setTimeout(() => heart.remove(), 7000);
+    }
+
+    setInterval(createHeart, 1000);
+  </script>
+
+</body>
+</html>
